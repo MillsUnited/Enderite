@@ -57,7 +57,7 @@ public class EnderiteBlockManager extends BlockPopulator implements Listener {
 
                 Player debugPlayer = getFirstPlayerInEnd(world);
                 if (debugPlayer != null) {
-                    debugPlayer.sendMessage("§6[DEBUG] §eEnderite Block placed at §bX: " + worldX + " Y: " + y + " Z: " + worldZ);
+//                    debugPlayer.sendMessage("§6[DEBUG] §eEnderite Block placed at §bX: " + worldX + " Y: " + y + " Z: " + worldZ);
                 }
             }
         }
