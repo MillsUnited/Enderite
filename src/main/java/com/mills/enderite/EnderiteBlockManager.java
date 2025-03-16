@@ -55,22 +55,22 @@ public class EnderiteBlockManager extends BlockPopulator implements Listener {
 
                 placedOres.add(new Location(world, worldX, y, worldZ));
 
-                Player debugPlayer = getFirstPlayerInEnd(world);
-                if (debugPlayer != null) {
+//                Player debugPlayer = getFirstPlayerInEnd(world);
+//                if (debugPlayer != null) {
 //                    debugPlayer.sendMessage("§6[DEBUG] §eEnderite Block placed at §bX: " + worldX + " Y: " + y + " Z: " + worldZ);
-                }
+//                }
             }
         }
     }
 
-    private Player getFirstPlayerInEnd(World world) {
-        for (Player player : Bukkit.getOnlinePlayers()) {
-            if (player.getWorld().equals(world)) {
-                return player;
-            }
-        }
-        return null;
-    }
+//    private Player getFirstPlayerInEnd(World world) {
+//        for (Player player : Bukkit.getOnlinePlayers()) {
+//            if (player.getWorld().equals(world)) {
+//                return player;
+//            }
+//        }
+//        return null;
+//    }
 
     private boolean isSurroundedByEndStone(World world, int x, int y, int z) {
         return isEndStone(world, x + 1, y, z) &&
