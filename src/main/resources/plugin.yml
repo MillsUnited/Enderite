@@ -1,0 +1,4 @@
+name: Enderite
+version: '1.0'
+main: com.mills.enderite.Main
+api-version: '1.21'
