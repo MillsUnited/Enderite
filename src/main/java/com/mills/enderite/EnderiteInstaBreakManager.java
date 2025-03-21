@@ -134,12 +134,6 @@ public class EnderiteInstaBreakManager implements Listener {
                     // Nether Ores
                     NETHER_QUARTZ_ORE, NETHER_GOLD_ORE,
 
-                    // End Stone
-                    END_STONE,
-
-                    // Obsidian Variants
-                    OBSIDIAN, CRYING_OBSIDIAN,
-
                     // Copper Block Variants
                     COPPER_BLOCK, EXPOSED_COPPER, WEATHERED_COPPER, OXIDIZED_COPPER,
                     CUT_COPPER, EXPOSED_CUT_COPPER, WEATHERED_CUT_COPPER, OXIDIZED_CUT_COPPER,

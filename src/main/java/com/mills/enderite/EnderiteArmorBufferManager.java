@@ -1,13 +1,17 @@
 package com.mills.enderite;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.bukkit.scheduler.BukkitRunnable;
 
 public class EnderiteArmorBufferManager implements Listener {
 
@@ -18,6 +22,32 @@ public class EnderiteArmorBufferManager implements Listener {
         this.plugin = plugin;
         this.enderiteItems = enderiteItems;
         giveEffectsWhenYouHaveArmor();
+    }
+
+    @EventHandler
+    public void onGoldenAppleEat(PlayerItemConsumeEvent e) {
+        if (e.getItem().getType() == Material.GOLDEN_APPLE) {
+            Player player = e.getPlayer();
+            ItemStack helmet = player.getInventory().getHelmet();
+            ItemStack chestplate = player.getInventory().getChestplate();
+            ItemStack leggings = player.getInventory().getLeggings();
+            ItemStack boots = player.getInventory().getBoots();
+            if (isFullEnderiteArmor(helmet, chestplate, leggings, boots)) {
+                new BukkitRunnable() {
+                    @Override
+                    public void run() {
+                        Player player = e.getPlayer();
+
+                        player.removePotionEffect(PotionEffectType.ABSORPTION);
+                        player.addPotionEffect(new PotionEffect(
+                                PotionEffectType.ABSORPTION,
+                                2400,
+                                2
+                        ));
+                    }
+                }.runTaskLater(plugin, 1L);
+            }
+        }
     }
 
     public void giveEffectsWhenYouHaveArmor() {

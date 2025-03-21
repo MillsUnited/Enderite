@@ -37,8 +37,9 @@ public class EnderiteBlockManager extends BlockPopulator implements Listener {
             int z = random.nextInt(16);
             int worldX = chunk.getX() * 16 + x;
             int worldZ = chunk.getZ() * 16 + z;
-            int y = world.getHighestBlockYAt(worldX, worldZ) - 1;
 
+            int topY = world.getHighestBlockYAt(worldX, worldZ) - 1;
+            int y = topY - random.nextInt(25) - 1;
             Block block = world.getBlockAt(worldX, y, worldZ);
 
             if (block.getType() == Material.END_STONE &&
@@ -73,12 +74,22 @@ public class EnderiteBlockManager extends BlockPopulator implements Listener {
 //    }
 
     private boolean isSurroundedByEndStone(World world, int x, int y, int z) {
-        return isEndStone(world, x + 1, y, z) &&
-                isEndStone(world, x - 1, y, z) &&
-                isEndStone(world, x, y, z + 1) &&
-                isEndStone(world, x, y, z - 1) &&
-                isEndStone(world, x, y + 1, z) &&
-                isEndStone(world, x, y - 1, z);
+        int count = 0;
+
+        for (int dx = 1; dx <= 3; dx++) {
+            if (isEndStone(world, x + dx, y, z)) count++;
+            if (isEndStone(world, x - dx, y, z)) count++;
+        }
+        for (int dy = 1; dy <= 3; dy++) {
+            if (isEndStone(world, x, y + dy, z)) count++;
+            if (isEndStone(world, x, y - dy, z)) count++;
+        }
+        for (int dz = 1; dz <= 3; dz++) {
+            if (isEndStone(world, x, y, z + dz)) count++;
+            if (isEndStone(world, x, y, z - dz)) count++;
+        }
+
+        return count >= 14;
     }
 
     private boolean isEndStone(World world, int x, int y, int z) {
